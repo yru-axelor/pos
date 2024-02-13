@@ -55,6 +55,7 @@ export default function MainContainer() {
   return (
     <Container fluid>
       <Row>
+        {/* Left container for filtering and sorting options */}
         <Col md="2" sm="2">
           <form action="">
             <label>Filter by Type:</label>
@@ -79,7 +80,7 @@ export default function MainContainer() {
             <br />
           </form>
         </Col>
-
+        {/* Container for ProductListing */}
         <Col md="6" sm="6">
           <Row>
             {filteredAndSortedData.map((d) => (
@@ -95,16 +96,16 @@ export default function MainContainer() {
             ))}
           </Row>
         </Col>
-
+        {/* Container for cart checkout */}
         <Col md="4" sm="4">
           <Cart items={items} total={total} />
         </Col>
 
         <div className="toast-container position-absolute top-0 end-0">
           {toastsList.map((toastTitle, i) => (
-            <>
-              <Toasts toastTitle={toastTitle} key={i} />
-            </>
+
+            <Toasts toastTitle={toastTitle} key={i} />
+
           ))}
         </div>
       </Row>

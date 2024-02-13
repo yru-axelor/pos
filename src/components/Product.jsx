@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 
 function Product(props) {
   return (
-    <Card>
+    <Card className="mb-3">
       <Card.Img variant="top" src={props.img} />
       <Card.Body>
         <Card.Title className="fs-5">{props.title}</Card.Title>
