@@ -61,3 +61,19 @@ img {
 .hidden {
   display: none;
 }
+
+.active {
+  background-color: #6d28d9 !important;
+}
+.hov:hover{
+  background-color: #6d28d9 !important;
+  color: white !important;
+}
+.row{
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: space-between !important;
+}
+.cart-badge{
+  background-color: #6d28d9 !important;
+}

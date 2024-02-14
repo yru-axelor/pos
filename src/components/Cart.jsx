@@ -24,7 +24,7 @@ export const Cart = ({ items, total, handleAdd, handleRemove }) => {
             <div className="ms-2 me-auto">
               <div className="fw-bold">Net Total</div>
             </div>
-            <Badge variant="primary" pill>
+            <Badge className="cart-badge" >
               {total.toFixed(2)}
             </Badge>
           </ListGroup.Item>
