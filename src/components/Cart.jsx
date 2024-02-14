@@ -4,7 +4,7 @@ import FillCart from "./FillCart";
 import EmptyCart from "./EmptyCart";
 import Badge from "react-bootstrap/Badge";
 
-export const Cart = ({ items, total }) => {
+export const Cart = ({ items, total, handleAdd, handleRemove }) => {
   return (
     <>
       {items.length !== 0 ? (
@@ -16,11 +16,11 @@ export const Cart = ({ items, total }) => {
                 as="li"
                 className="d-flex justify-content-between align-items-center"
               >
-                <FillCart item={item} />
+                <FillCart item={item} handleAdd={handleAdd} handleRemove={handleRemove} />
               </ListGroup.Item>
             ))}
           </ListGroup>
-          <ListGroup.Item className="d-flex justify-content-between align-items-center">
+          <ListGroup.Item className="d-flex justify-content-between align-items-center total">
             <div className="ms-2 me-auto">
               <div className="fw-bold">Net Total</div>
             </div>

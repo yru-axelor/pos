@@ -42,7 +42,7 @@ export const data = [
   {
     id: 4,
     img: broccoli,
-    title: "StrawBroccoi",
+    title: "Broccoli",
     quantity: 1,
     type: "vegetable",
     price: 50,
@@ -74,7 +74,7 @@ export const data = [
   {
     id: 8,
     img: mashroom,
-    title: "Mashrrom",
+    title: "Mushroom",
     quantity: 1,
     type: "vegetable",
     price: 10,

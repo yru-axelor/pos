@@ -1,11 +1,11 @@
 import React from "react";
 import Badge from "react-bootstrap/Badge";
-function FillCart({ item }) {
+function FillCart({ item, handleAdd, handleRemove }) {
   return (
     <>
-      <div className="ms-2 me-auto">
-        <div className="fw-bold">{item.title}</div>₹ {item.price} x
-        {item.quantity}
+      <div className="ms-2 me-auto fill-cart">
+        <div className="fw-bold">{item.title}</div><button className="add-btn" onClick={() => handleAdd(item)}>+</button>
+        {item.quantity}<button className="remove-btn" onClick={() => handleRemove(item)}>-</button>
       </div>
       <Badge variant="primary" pill>
         {(item.price * item.quantity).toFixed(2)}

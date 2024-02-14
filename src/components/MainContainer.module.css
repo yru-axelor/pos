@@ -1,0 +1,16 @@
+.container {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.left {
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.nav {
+    background-color: rgb(29, 27, 27);
+    color: white !important;
+}
