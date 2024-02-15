@@ -9,6 +9,7 @@ export const Cart = ({ items, total, handleAdd, handleRemove }) => {
     <>
       {items.length !== 0 ? (
         <>
+          <h3>Cart</h3>
           <ListGroup as="ol" numbered>
             {items.map((item, i) => (
               <ListGroup.Item
@@ -16,7 +17,11 @@ export const Cart = ({ items, total, handleAdd, handleRemove }) => {
                 as="li"
                 className="d-flex justify-content-between align-items-center"
               >
-                <FillCart item={item} handleAdd={handleAdd} handleRemove={handleRemove} />
+                <FillCart
+                  item={item}
+                  handleAdd={handleAdd}
+                  handleRemove={handleRemove}
+                />
               </ListGroup.Item>
             ))}
           </ListGroup>
@@ -24,7 +29,7 @@ export const Cart = ({ items, total, handleAdd, handleRemove }) => {
             <div className="ms-2 me-auto">
               <div className="fw-bold">Net Total</div>
             </div>
-            <Badge className="cart-badge" >
+            <Badge bg="" className="cart-badge">
               {total.toFixed(2)}
             </Badge>
           </ListGroup.Item>

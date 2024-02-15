@@ -69,11 +69,16 @@ img {
   background-color: #6d28d9 !important;
   color: white !important;
 }
-.row{
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: space-between !important;
-}
 .cart-badge{
   background-color: #6d28d9 !important;
+}
+span{
+  color: rgb(106, 101, 94);
+}
+
+.activetype{
+  color: white;
+}
+.popover-cart{
+  padding: 10px;
 }

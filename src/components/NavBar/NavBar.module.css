@@ -1,0 +1,20 @@
+.container {
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left {
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.right{
+    margin-right: 150px;
+}
+.nav {
+    background-color: rgb(29, 27, 27);
+    color: white !important;
+}
