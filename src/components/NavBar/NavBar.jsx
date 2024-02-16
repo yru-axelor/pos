@@ -13,19 +13,25 @@ const NavBar = ({ filters, setFilters, cartPopOver, items }) => {
         <div className={styles.left}>
           <h4 className="activetype">Grofer Basket</h4>
           <span
-            className={`${activetype === "" ? "activetype" : ""}`}
+            className={`${
+              activetype === "" ? "activetype" : ""
+            } activetypecursor `}
             onClick={() => setFilters((prev) => ({ ...prev, type: "" }))}
           >
             All
           </span>
           <span
-            className={`${activetype === "fruits" ? "activetype" : ""}`}
+            className={`${
+              activetype === "fruits" ? "activetype" : ""
+            } activetypecursor`}
             onClick={() => setFilters((prev) => ({ ...prev, type: "fruits" }))}
           >
             Fruit
           </span>
           <span
-            className={`${activetype === "vegetable" ? "activetype" : ""}`}
+            className={`${
+              activetype === "vegetable" ? "activetype" : ""
+            } activetypecursor`}
             onClick={() =>
               setFilters((prev) => ({ ...prev, type: "vegetable" }))
             }
@@ -33,7 +39,9 @@ const NavBar = ({ filters, setFilters, cartPopOver, items }) => {
             Vegetables
           </span>
           <span
-            className={`${activetype === "seed" ? "activetype" : ""}`}
+            className={`${
+              activetype === "seed" ? "activetype" : ""
+            } activetypecursor`}
             onClick={() => setFilters((prev) => ({ ...prev, type: "seed" }))}
           >
             Seeds

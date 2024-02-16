@@ -79,6 +79,9 @@ span{
 .activetype{
   color: white;
 }
+.activetypecursor:hover{
+  cursor: pointer;
+}
 .popover-cart{
   padding: 10px;
 }

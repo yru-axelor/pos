@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { Popover } from "react-bootstrap";
+import Container from "react-bootstrap/esm/Container";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 import Product from "../Product/Product";
 import { data } from "../../data";
 import { Cart } from "../Cart";
 import Toasts from "../Toasts";
 import NavBar from "../NavBar/NavBar";
-
-import { Popover } from "react-bootstrap";
-import Container from "react-bootstrap/esm/Container";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 
 export default function MainContainer() {
   const [items, setItems] = useState([]);
@@ -17,9 +16,8 @@ export default function MainContainer() {
     type: "",
     sort: { based: "", inAsc: false },
   });
-  const [toastsList, setToastsList] = useState([]);
+  const [toasts, setToasts] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
-  // useEffect for setting initial cart and product on initial render
 
   // function to add elements in cart
   const handleAdd = (item) => {
@@ -34,13 +32,11 @@ export default function MainContainer() {
       setItems((items) => [...items, item]);
     }
 
-    setToastsList((toasts) => [
-      ...toasts,
-      { title: item.title, action: "Added" },
-    ]);
+    setToasts((toasts) => [...toasts, { title: item.title, action: "Added" }]);
+
     // removing toasts from the page
     setTimeout(() => {
-      setToastsList((prev) => prev.slice(1));
+      setToasts((prev) => prev.slice(1));
     }, 3000);
   };
   // function to remove elements from cart
@@ -52,16 +48,16 @@ export default function MainContainer() {
       .filter((i) => i.quantity !== 0);
     setItems(updatedItems);
 
-    setToastsList((toasts) => [
+    setToasts((toasts) => [
       ...toasts,
       { title: item.title, action: "Removed" },
     ]);
     setTimeout(() => {
-      setToastsList((prev) => prev.slice(1));
+      setToasts((prev) => prev.slice(1));
     }, 3000);
   };
   // function to update product section when any action happen
-  const handleFilterChange = () => {
+  const handleFilterChange = useCallback(() => {
     const { type, sort } = filters;
     const { based, inAsc } = sort;
 
@@ -87,12 +83,11 @@ export default function MainContainer() {
     }
 
     setFilteredItems(updateditem);
-  };
+  }, [filters]);
   // Cart PopOver
   const cartPopOver = (
     <Popover id="popover-positioned-bottom" title="My Cart" className="popover">
       <div className="popover-cart">
-        <h5>Cart</h5>
         <Cart
           items={items}
           total={total}
@@ -103,16 +98,17 @@ export default function MainContainer() {
     </Popover>
   );
 
+  // useEffect for setting initial cart and product on initial render
   useEffect(() => {
     const storedItems = JSON.parse(localStorage.getItem("items"));
     const total = JSON.parse(localStorage.getItem("total"));
     setItems(storedItems || []);
     setTotal(total || 0);
     setFilteredItems(data);
-    // eslint-disable-next-line
   }, []);
-  // eslint-disable-next-line
-  useEffect(() => handleFilterChange(), [filters]);
+
+  useEffect(() => handleFilterChange(), [handleFilterChange]);
+
   // useEffect for setting localStorage whenever cart-items gets updated
   useEffect(() => {
     localStorage.setItem("items", JSON.stringify(items));
@@ -157,7 +153,7 @@ export default function MainContainer() {
           </Col>
 
           <div className="toast-container position-absolute bottom-0 end-0">
-            {toastsList.map((toast, i) => (
+            {toasts.map((toast, i) => (
               <Toasts
                 toastTitle={toast.title}
                 toastAction={toast.action}
