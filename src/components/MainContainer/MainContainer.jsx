@@ -19,7 +19,13 @@ export default function MainContainer() {
   const [toasts, setToasts] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
 
-  // function to add elements in cart
+  const handleToast = (title, action) => {
+    setToasts((toasts) => [...toasts, { title: title, action }]);
+    setTimeout(() => {
+      setToasts((prev) => prev.slice(1));
+    }, 3000);
+  };
+
   const handleAdd = (item) => {
     setTotal((t) => t + item.price);
     const isExist = items.find((it) => it.id === item.id);
@@ -31,30 +37,16 @@ export default function MainContainer() {
     } else {
       setItems((items) => [...items, item]);
     }
-
-    setToasts((toasts) => [...toasts, { title: item.title, action: "Added" }]);
-
-    // removing toasts from the page
-    setTimeout(() => {
-      setToasts((prev) => prev.slice(1));
-    }, 3000);
+    handleToast(item.title, "Added");
   };
-  // function to remove elements from cart
+
   const handleRemove = (item) => {
     setTotal((t) => t - item.price);
-
     const updatedItems = items
       .map((i) => (i.id !== item.id ? i : { ...i, quantity: i.quantity - 1 }))
       .filter((i) => i.quantity !== 0);
     setItems(updatedItems);
-
-    setToasts((toasts) => [
-      ...toasts,
-      { title: item.title, action: "Removed" },
-    ]);
-    setTimeout(() => {
-      setToasts((prev) => prev.slice(1));
-    }, 3000);
+    handleToast(item.title, "Removed");
   };
   // function to update product section when any action happen
   const handleFilterChange = useCallback(() => {
@@ -66,14 +58,10 @@ export default function MainContainer() {
       return;
     }
     let updateditem = [...data];
-
-    // Filter by type
     if (type !== "") {
       updateditem = data.filter((item) => item.type === type);
     }
-
     const order = inAsc ? 1 : -1;
-    // Sorting on based in inAsc
     if (based === "asc") {
       updateditem.sort((a, b) => order * (a.price - b.price));
     } else if (based === "title") {
@@ -124,10 +112,8 @@ export default function MainContainer() {
         setFilters={setFilters}
         cartPopOver={cartPopOver}
       />
-
       <Container fluid>
         <Row>
-          {/* Product Section */}
           <Col md="8" sm="8">
             <Row md="4" sm={"6"} xs={"6"}>
               {filteredItems.map((d) => (
@@ -142,7 +128,6 @@ export default function MainContainer() {
               ))}
             </Row>
           </Col>
-          {/* Cart Section */}
           <Col md="4" sm="3">
             <Cart
               items={items}
@@ -151,7 +136,6 @@ export default function MainContainer() {
               handleRemove={handleRemove}
             />
           </Col>
-
           <div className="toast-container position-absolute bottom-0 end-0">
             {toasts.map((toast, i) => (
               <Toasts
